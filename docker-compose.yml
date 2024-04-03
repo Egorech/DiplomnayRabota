@@ -14,7 +14,7 @@ services:
       - postgres
 
   postgres:
-    container_name: apimarket_postgresql
+    container_name: db
     image: postgres:latest
     env_file:
       - .env
