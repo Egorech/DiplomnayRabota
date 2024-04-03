@@ -1,0 +1,2 @@
+VHOST: /
+QUEUE: offers_request_data_handler_queue

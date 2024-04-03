@@ -1,0 +1,12 @@
+﻿docker-compose ps – посмотреть запущенные контейнеры
+
+docker-compose build – создать контейнера по конфигам
+docker-compose up – запуск контейнеров с висячими в терминале логами
+docker-compose up -d – запуск контейнеров без висячих логов
+docker-compose up -d --build – создание и запуск контейнеров
+
+docker-compose run --rm <container_name> bash – при условии что контейнер не демон запускаем лезем в баш контейнера (--rm – удалить контейнер после выхода)
+docker-compose exec <container_name> bash – зайти в баш запущенного контейнера
+
+docker-compose down – стопаем контейнера
+docker-compose down -v – стопаем контейнера и удаляем содержимое

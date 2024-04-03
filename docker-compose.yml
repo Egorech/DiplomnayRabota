@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  django:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./parsing_api:/code
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: apimarket_postgresql
+    image: postgres:latest
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgresql/data:/var/lib/postgresql/data/
+    restart: always
+
+  rabbitmq:
+    container_name: apimarket_rabbitmq
+    image: rabbitmq:3-management-alpine
+    hostname: "rabbit"
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5675:5672"
+      - "15675:15672"
+    volumes:
+      - ./docker/rabbitmq/data:/var/lib/rabbitmq
+      - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+
+  worker_offers_request_data_handler:
+    build: .
+    command: bash -c "python manage.py migrate &&
+      celery -A parsing_api worker -l info -n worker_offers_request_data_handler -Q offers_request_data_handler_queue"
+    restart: always
+    volumes:
+      - ./parsing_api:/code
+    depends_on:
+      - django
+      - rabbitmq
+    env_file:
+      - .env
+
+
+  worker_specs_request_data_handler:
+    build: .
+    command: bash -c "python manage.py migrate &&
+      celery -A parsing_api worker -l info -n worker_specs_request_data_handler -Q specs_request_data_handler_queue"
+    restart: always
+    volumes:
+      - ./parsing_api:/code
+    depends_on:
+      - django
+      - rabbitmq
+    env_file:
+      - .env
+
