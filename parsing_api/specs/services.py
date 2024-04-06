@@ -15,19 +15,19 @@ class RequestDataService:
         except Exception as e:
             raise Exception(str(e))
         if 'site_products' not in data:
-            raise Exception('"site_products" key is required')
+            raise Exception('site_products key is required')
         if not isinstance(data['site_products'], list):
-            raise Exception('"site_products" must be a list')
+            raise Exception('site_products must be a list')
         if len(data['site_products']) == 0:
-            raise Exception('"site_products" list cannot be empty')
+            raise Exception('site_products list cannot be empty')
         if not all(isinstance(item, str) for item in data['site_products']):
-            raise Exception('Each item in "site_products" must be a string')
+            raise Exception('Each item in site_products must be a string')
         if 'domain' not in data:
-            raise Exception('"domain" key is required')
+            raise Exception('domain key is required')
         if not isinstance(data['domain'], str):
-            raise Exception('"domain" must be a str')
+            raise Exception('domain must be a str')
         if data['domain'] != 'wildberries.ru':
-            raise Exception('"domain" str must be "wildberries.ru"')
+            raise Exception('domain str must be wildberries.ru')
         return data
 
 

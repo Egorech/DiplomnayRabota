@@ -18,14 +18,14 @@ class RequestDataService:
             raise Exception('JSON is not valid')
         except Exception as e:
             raise Exception(str(e))
-        if 'links' not in data:
-            raise Exception('"links" key is required')
-        if not isinstance(data['links'], list):
-            raise Exception('"links" must be a list')
-        if len(data['links']) == 0:
-            raise Exception('"links" list cannot be empty')
-        if not all(isinstance(item, str) for item in data['links']):
-            raise Exception('Each item in "links" must be a string')
+        if "links" not in data:
+            raise Exception('links key is required')
+        if not isinstance(data["links"], list):
+            raise Exception('links must be a list')
+        if len(data["links"]) == 0:
+            raise Exception('links list cannot be empty')
+        if not all(isinstance(item, str) for item in data["links"]):
+            raise Exception('Each item in links must be a string')
         return data
 
 
