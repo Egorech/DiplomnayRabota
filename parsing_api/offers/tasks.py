@@ -11,7 +11,6 @@ def handle_products(task_id: int) -> None:
     task.task_status = 'DATA_PROCESSING'
     task.save()
     ProductService.create_products(task.id)
-    # time.sleep(100)
 
     task.task_status = 'WAITING_PARSING'
     task.save()
