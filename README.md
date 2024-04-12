@@ -33,4 +33,4 @@
 3) docker compose up
 5) http://localhost:8000/
 
-<strong>(Важно отметить, что для корректной работы с Docker нужен запщуенный docker engine, в качестве решения можете скачать Docker Desktop по ссылке: https://www.docker.com/products/docker-desktop/)</strong>
+<strong>(Важно отметить, что для корректной работы с Docker нужен запущенный docker engine, в качестве решения можете скачать Docker Desktop по ссылке: https://www.docker.com/products/docker-desktop/)</strong>
